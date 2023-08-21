@@ -6,7 +6,6 @@ const users = require('./routes/users');
 const home = require('./routes/home');
 const filter = require('./middleware/filter');
 const logger = require('./middleware/logRoutes');
-
 const app = express();
 
 app.use(cors());
