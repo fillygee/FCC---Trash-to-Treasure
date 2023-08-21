@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="src/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="css/default.css" />
+    <script src="js/homepage.js" defer></script>
+    <title>Home</title>
+  </head>
+  <body>
+    <nav>
+      <a id="logout" href="/index">Log out</a>
+    </nav>
+    <header>
+      <h1>Discretion</h1>
+      <em>Not everything needs to be public.</em>
+    </header>
+    <hr />
+    <main>
+      <div class="container" id="cats"></div>
+      <hr />
+      <form id="cats_list">
+        <fieldset>
+          <label for="cat_name">Name:</label>
+          <input type="text" id="cat_name" name="name" required="true" />
+        </fieldset>
+        <fieldset>
+          <label for="cat_age">Age:</label>
+          <textarea id="cat_age" name="age" required="true"></textarea>
+        </fieldset>
+
+        <fieldset>
+          <label for="cat_breed">Breed:</label>
+          <textarea id="cat_breed" name="breed" required="true"></textarea>
+        </fieldset>
+        <input type="submit" value="Post" />
+      </form>
+    </main>
+  </body>
+</html>
