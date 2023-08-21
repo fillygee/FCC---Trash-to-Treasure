@@ -66,7 +66,6 @@ class Post {
             throw new Error('Could not delete post');
         }
         const deletedPost = response.rows[0];
-        console.log(deletedPost);
         return deletedPost;
     }
 }
