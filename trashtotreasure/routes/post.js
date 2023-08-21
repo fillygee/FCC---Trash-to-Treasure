@@ -1,11 +1,11 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const post = require("../controllers/post");
-const authenticator = require("../middleware/authenticator");
+const post = require('../controllers/post');
+const authenticator = require('../middleware/authenticator');
 
-router.get("/", authenticator, posts.getAll);
-router.get("/:id", authenticator, posts.getOne);
-router.post("/add", authenticator, posts.addOne);
-router.get("/delete/:id", authenticator, posts.deleteOne);
+router.get('/', authenticator, post.getAll);
+router.get('/:id', authenticator, post.getOne);
+router.post('/add', authenticator, post.addOne);
+router.delete('/delete/:id', authenticator, post.deleteOne);
 
 module.exports = router;
