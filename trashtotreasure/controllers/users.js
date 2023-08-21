@@ -26,17 +26,23 @@ const getOne = async (req, res) => {
 };
 
 async function register(req, res) {
-  const data = req.body;
+  try {
+    const data = req.body;
+    console.log(data)
+    // Generate a salt with a specific cost
+    const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS));
 
-  // Generate a salt with a specific cost
-  const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS));
+    // Hash the password
+    data["password"] = await bcrypt.hash(data["password"], salt);
 
-  // Hash the password
-  data["password"] = await bcrypt.hash(data["password"], salt);
-  data["isAdmin"] = false;
-  const result = await User.create(data);
+    data["isAdmin"] = false;
 
-  return res.status(201).json({ result: "Success!" });
+    const result = await User.create(data);
+
+    return res.status(201).send(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 }
 
 async function login(req, res) {
@@ -76,8 +82,16 @@ const deleteOne = async (req, res) => {
   }
 };
 
-const loggedInCheck = async(req, res) =>{
-  res.status(302).json({status: "authorized"});
-}
+const loggedInCheck = async (req, res) => {
+  res.status(302).json({ status: "authorized" });
+};
 
-module.exports = { getAll, getOne, register, deleteOne, login, logout, loggedInCheck };
+module.exports = {
+  getAll,
+  getOne,
+  register,
+  deleteOne,
+  login,
+  logout,
+  loggedInCheck,
+};

@@ -16,9 +16,10 @@ document
         password: form.get("password"),
       }),
     };
-
+    
     const response = await fetch("/users/add", options);
     //const data = await response.json();
+    
 
     if (response.status == 201) {
       window.location.assign("/login");
