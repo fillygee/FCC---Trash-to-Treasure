@@ -8,17 +8,17 @@ class User {
   }
 
   static getAllUsers = async () => {
-    return await db.query("SELECT * FROM user_account;");
+    return await db.query("SELECT * FROM users;");
   };
 
   static getById = async (id) => {
-    return await db.query("SELECT * FROM user_account WHERE id = $1", [id]);
+    return await db.query("SELECT * FROM users WHERE id = $1", [id]);
   };
 
   static async create(data) {
     const { username, password, isAdmin } = data;
     let response = await db.query(
-      "INSERT INTO user_account (username, password, is_Admin) VALUES ($1, $2, $3) RETURNING id",
+      "INSERT INTO users (username, password, is_Admin) VALUES ($1, $2, $3) RETURNING id",
       [username, password, isAdmin]
     );
     const newId = response.rows[0].id;
@@ -28,7 +28,7 @@ class User {
 
   static async getOneById(id) {
     const response = await db.query(
-      "SELECT * FROM user_account WHERE id = $1",
+      "SELECT * FROM users WHERE id = $1",
       [id]
     );
     if (response.rows.length != 1) {
@@ -38,14 +38,14 @@ class User {
   }
 
   static delete = async (id) => {
-    await db.query("DELETE FROM user_account WHERE id = $1", [id]);
+    await db.query("DELETE FROM users WHERE id = $1", [id]);
 
     return await this.getAllUsers();
   };
 
   static async getOneByUsername(username) {
     const response = await db.query(
-      "SELECT * FROM user_account WHERE username = $1",
+      "SELECT * FROM users WHERE username = $1",
       [username]
     );
     if (response.rows.length != 1) {
