@@ -1,39 +1,55 @@
-const Post = require("../models/Post");
+const Post = require('../models/Post');
 
-const getAll = async (req, res) => {
-  try {
-    return res.send((await Post.getAllPosts()).rows);
-  } catch (error) {
-    return res.status(500).send("Internal Server Error!" + error);
-  }
+const index = async (req, res) => {
+    try {
+        const posts = await Post.getAll();
+        return res.json(posts);
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
 };
 
 const getOne = async (req, res) => {
-  try {
-    const result = (await Post.getById(parseInt(req.params.id))).rows;
-    if (result.length === 0) {
-      throw new Error("Post was not found");
+    try {
+        const result = (await Post.getById(parseInt(req.params.id))).rows;
+        if (result.length === 0) {
+            throw new Error('Post was not found');
+        }
+        return res.send(result);
+    } catch (error) {
+        return res.status(404).send('Could not find specified post with specified id!');
     }
-    return res.send(result);
-  } catch (error) {
-    return res
-      .status(404)
-      .send("Could not find specified post with specified id!");
-  }
 };
 
 const addOne = async (req, res) => {
-  // const post = new Post(req.body.name, parseInt(req.body.age), req.body.breed); change this as necessary
-  post.owner = res.locals.user;
-  return res.status(201).send((await Post.add(post)).rows);
+    const data = req.body;
+    const user_id = req.headers['authorization'];
+    const response = await Post.create(data, user_id);
+    const newPost = response.rows[0];
+    return res.status(201).send(newPost);
+};
+
+const putOne = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const data = req.body;
+        const post = await Post.getOne(id);
+        const response = await post.update(data);
+        const updatedPost = response.rows[0];
+        return res.send(updatedPost);
+    } catch (error) {
+        return res.status(500).send('Could not update post with specified id!');
+    }
 };
 
 const deleteOne = async (req, res) => {
-  try {
-    return res.send((await Post.delete(parseInt(req.params.id))).rows);
-  } catch (error) {
-    return res.status(500).send("Could not delete post with specified id!");
-  }
+    try {
+        const post = await Post.getById(req.params.id);
+        const result = await post.delete();
+        return res.send(result);
+    } catch (error) {
+        return res.status(500).send('Could not delete post with specified id!');
+    }
 };
 
-module.exports = { getAll, getOne, addOne, deleteOne };
+module.exports = { index, getOne, addOne, putOne, deleteOne };
