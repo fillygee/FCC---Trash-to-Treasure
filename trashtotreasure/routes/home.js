@@ -5,6 +5,7 @@ const authenticator = require("../middleware/authenticator");
 
 router.get("/register", home.register);
 router.get("/login", home.login);
+
 router.get("/homepage", authenticator, home.homepage);
 router.get("*", (req, res) => {
   res.redirect("/");

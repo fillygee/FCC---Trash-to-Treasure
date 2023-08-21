@@ -6,11 +6,7 @@ class User {
     this.password = password;
     this.isAdmin = isAdmin;
   }
-  constructor(username, password, isAdmin) {
-    this.username = username;
-    this.password = password;
-    this.isAdmin = isAdmin;
-  }
+
 
   static getAllUsers = async () => {
     return await db.query("SELECT * FROM users;");
