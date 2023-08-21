@@ -46,71 +46,16 @@ async function checkLogin() {
   }
 }
 
+function showPassword() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
 checkLogin();
-
-//kristians code above
-
-//indian code below
-
-// /*
-//  * This entire block is wrapped in an IIFE to prevent polluting the scope of the web page with
-//  * functions created by this extension.
-//  */
-// (function(realOpen, realSend, realFetch) {
-//   /*
-//    * Sometimes pages overwrite standard objects with global
-//    * variables. Where possible, we extract fresh versions from an
-//    * iframe.
-//    */
-//   const iframe = document.createElement('iframe');
-//   document.documentElement.appendChild(iframe);
-
-//   // Initialise with global values
-//   let URL = window.URL;
-//   let WeakMap = window.WeakMap;
-//   let WeakSet = window.WeakSet;
-//   let TextDecoder = window.TextDecoder;
-//   let Uint8Array = window.Uint8Array;
-//   let decodeURIComponent = window.decodeURIComponent;
-//   let URLSearchParams = window.URLSearchParams;
-//   let Array = window.Array;
-//   let Object = window.Object;
-//   let atob = window.atob;
-//   let CustomEvent = window.CustomEvent;
-//   let performance = window.performance;
-//   let JSON = window.JSON;
-
-//   /*
-//    * Under some circumstances the iframe isn't added
-//    * successfully. If it has a contentWindow then we can extract the
-//    * values from it, but otherwise we fall back on the global
-//    * values.
-//    */
-//   if (iframe.contentWindow) {
-//       // Try block because sometimes the CORS prevents access to iframe
-//       try {
-//           URL = iframe.contentWindow.URL;
-//           WeakMap = iframe.contentWindow.WeakMap;
-//           WeakSet = iframe.contentWindow.WeakSet;
-//           TextDecoder = iframe.contentWindow.TextDecoder;
-//           Uint8Array = iframe.contentWindow.Uint8Array;
-//           decodeURIComponent = iframe.contentWindow.decodeURIComponent;
-//           URLSearchParams = iframe.contentWindow.URLSearchParams;
-//           Array = iframe.contentWindow.Array;
-//           Object = iframe.contentWindow.Object;
-//           atob = iframe.contentWindow.atob;
-//           CustomEvent = iframe.contentWindow.CustomEvent;
-//           performance = iframe.contentWindow.performance;
-//           JSON = iframe.contentWindow.JSON;
-//       } catch (error) {
-//           // Empty catch block to prevent errors from showing in page logs
-//       }
-//   }
-
-//   // If iframe was added successfully, remove it
-//   if (iframe.parentNode) {
-//       iframe.parentNode.removeChild(iframe);
-//   }
 
 //   /*
 //    * If any of the values don't have the correct type, return and
