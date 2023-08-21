@@ -10,6 +10,7 @@ CREATE TABLE users (
     user_id INT GENERATED ALWAYS AS IDENTITY,
     username VARCHAR (30) UNIQUE NOT NULL,
     password CHAR(60) UNIQUE NOT NULL,
+    is_admin BOOLEAN NOT NULL DEFAULT FALSE,
     PRIMARY KEY (user_id)
 );
 
