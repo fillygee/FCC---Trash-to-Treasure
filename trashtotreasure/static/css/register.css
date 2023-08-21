@@ -441,14 +441,17 @@ input[type="text"]{font: 15px/24px "Lato", Arial, sans-serif; color: #333; width
   }                                  
 }
 
-@media screen and (min-width:501px) {
+@media (min-width:501px) {
   .wrap-login100 {
     padding: 65px 50px 50px;
-    margin-right: 350px;
+    margin-right: 250px;
+    
+    
   }  
   
   .logo {
-    position: relative;
+   
+    margin-right: 300px;
 
   }
   

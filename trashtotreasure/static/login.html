@@ -4,26 +4,26 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Trash to Treasure Login</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="./login.css">
-		<script src="./login.js" defer></script>
+		<link rel="stylesheet" type="text/css" href="./css/login.css">
+		<script src="./js/login.js" defer></script>
 		<script src="../Login Form_files/jquery.min.js.download"></script> 
-		<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+		<link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 </head>
 
 <body data-new-gr-c-s-check-loaded="14.1120.0" data-gr-ext-installed="">
 	
 	<div class="limiter">
 		<div class="container-login100">
-			<img src="../assets/logo.png" alt="FCC Trash to Treasure logo" class="logo">
+			<img src="./assets/logo.png" alt="FCC Trash to Treasure logo" class="logo">
 			<div class="wrap-login100">
-				<form class="login100-form" method="POST" autocomplete="off">
+				<form class="login100-form" method="POST" autocomplete="off" id="login-form">
 					<span class="login100-form-title">
 						Login
 					</span>
 					
 					<div class="wrap-input100">
-			        	<input class="effect-19 input100" id="email" type="text" placeholder="" autocomplete="off">
-			            <label for="email">Email</label>
+			        	<input class="effect-19 input100" id="username" type="text" placeholder="" autocomplete="off" name="username">
+			            <label for="username">Username</label>
 			            <span class="focus-border">
 			            	<i></i>
 			            </span>
@@ -43,17 +43,15 @@
 					</div>
 
 					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn">Sign in</button>
+						<button class="login100-form-btn" type="submit" value="Log in">Log in</button>
 					</div>
-
-					
 
 					<div class="text-center  p-t-25 p-b-5">
 						<span class="txt1">
 							Don't have an account?
 						</span>
 
-						<a href="../signup/signup.html" class="txt2 hov1">
+						<a href="./register.html" class="txt2 hov1">
 							Sign up
 						</a>
 					</div>
