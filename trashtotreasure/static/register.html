@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Login Form</title>
+	<title> Trash to Treasure Register </title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="./signup.css">
-<script src="./signup.js" defer></script>
+	<link rel="stylesheet" type="text/css" href="./css/register.css">
+<script src="./js/register.js" defer></script>
 <script src="../Login Form_files/jquery.min.js.download"></script> 
-<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 </head>
 <body data-new-gr-c-s-check-loaded="14.1120.0" data-gr-ext-installed="">
 	
 	<div class="limiter">
 		<div class="container-login100">
+			<img src="./assets/logo.png" alt="FCC Trash to Treasure logo" class="logo">
 			<div class="wrap-login100">
-				<form class="login100-form" method="POST" autocomplete="off">
+				<form class="login100-form" method="POST" autocomplete="off" id="register-form">
 					<span class="login100-form-title">
 						Sign Up
 					</span>
 					
 					<div class="wrap-input100">
-			        	<input class="effect-19 input100" id="email" type="text" placeholder="" autocomplete="off">
-			            <label for="email">Email</label>
+			        	<input class="effect-19 input100" id="username" type="text" placeholder="" autocomplete="off" name="username" >
+			            <label for="username">Username</label>
 			            <span class="focus-border">
 			            	<i></i>
 			            </span>
@@ -36,11 +37,11 @@
 
 			        <div class="show-pass txt1">
 			        	<label for="show-pass">Show Password</label>
-						<input type="checkbox" id="show-pass" onclick="myFunction()"> Show Password
+						<input type="checkbox" id="show-pass"> Show Password
 					</div>
 
 					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn">Create Account</button>
+						<button class="login100-form-btn" type="submit" value="Register">Create Account</button>
 					</div>
 
 					<div class="text-center p-t-25 p-b-5">
