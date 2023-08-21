@@ -36,9 +36,9 @@ async function register(req, res) {
     data["password"] = await bcrypt.hash(data["password"], salt);
 
     data["isAdmin"] = false;
-
+    console.log('ok')
     const result = await User.create(data);
-
+   
     return res.status(201).send(result);
   } catch (error) {
     res.status(400).json({ error: error.message });

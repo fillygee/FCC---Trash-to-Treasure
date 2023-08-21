@@ -18,10 +18,14 @@ class User {
 
     static async create(data) {
         const { username, password, isAdmin } = data;
+        console.log(username)
+        console.log(password)
+        console.log(isAdmin)
         let response = await db.query(
-            'INSERT INTO users (username, password, is_admin) VALUES ($1, $2, $3) RETURNING id',
+            'INSERT INTO users (username, password, is_admin) VALUES ($1, $2, $3) RETURNING *',
             [username, password, isAdmin]
         );
+        console.log(response)
         const newId = response.rows[0].id;
         const newUser = await User.getOneById(newId);
         return newUser;
