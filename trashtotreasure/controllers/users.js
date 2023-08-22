@@ -50,12 +50,13 @@ async function login(req, res) {
     const data = req.body;
 
     const user = await User.getOneByUsername(data.username);
+
     const authenticated = await bcrypt.compare(data.password, user["password"]);
 
     if (!authenticated) {
       throw new Error("Incorrect credentials.");
     } else {
-      const token = await Token.create(user.username);
+      const token = await Token.create(user.user_id);
       res
         .cookie("authorization", token.token, { httpOnly: false })
         .status(200)

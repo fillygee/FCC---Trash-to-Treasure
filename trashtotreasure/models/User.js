@@ -49,7 +49,7 @@ class User {
     if (response.rows.length != 1) {
       throw new Error("Unable to locate user.");
     }
-    return new User(response.rows[0].username, response.rows[0].password);
+    return response.rows[0];
   }
 }
 
