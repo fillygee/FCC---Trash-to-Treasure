@@ -1,4 +1,6 @@
 -- Every created table should always have a DROP TABLE IF EXISTS statement at the top
+DROP TABLE IF EXISTS comments;
+
 DROP TABLE IF EXISTS posts;
 
 DROP TABLE IF EXISTS tokens;
@@ -27,6 +29,17 @@ CREATE TABLE posts (
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
+CREATE TABLE comments (
+    comment_id INT GENERATED ALWAYS AS IDENTITY,
+    post_id INT NOT NULL,
+    user_id INT NOT NULL,
+    content VARCHAR (500) NOT NULL,
+    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (comment_id),
+    FOREIGN KEY (post_id) REFERENCES posts(post_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
 CREATE TABLE tokens (
     token_id INT GENERATED ALWAYS AS IDENTITY,
     user_id INT NOT NULL,
@@ -47,3 +60,14 @@ INSERT INTO posts (user_id, item_name, item_category, item_description, address,
     (3, 'Modern Bedroom Set', 'Furniture', 'Complete bedroom set including a sleek platform bed, two nightstands, and a spacious dresser. Clean lines and minimalist design.', '78 Willow Close', 'IJ56 7KL'),
     (2, 'Rustic Bookshelf', 'Furniture', 'A sturdy wooden bookshelf with a rustic finish. Ample space for your book collection and decorative items.', '90 Oakwood Road', 'KL67 8MN'),
     (1, 'Chic Coffee Table', 'Furniture', 'A glass-topped coffee table with a metal base. Adds a touch of elegance to any living room setup.', '23 Elm Gardens', 'MN78 9OP');
+
+INSERT INTO comments (post_id, user_id, content) VALUES
+    (1, 1, 'Lovely dining table! Would love to have this in my home.'),
+    (1, 3, 'Wow, the carving details are amazing. Great find!'),
+    (2, 2, 'This leather sofa looks super comfy. Is it still available?'),
+    (3, 1, 'I adore vintage furniture! This writing desk is a gem.'),
+    (4, 3, 'The modern bedroom set is so sleek and stylish. Love it!'),
+    (4, 2, 'What are the dimensions of the bed?'),
+    (5, 1, 'The rustic bookshelf is just what I need for my books.'),
+    (6, 3, 'Chic coffee table indeed. Would be a great addition to any living room.'),
+    (6, 2, 'Is the glass tempered for safety?');
