@@ -15,7 +15,7 @@ async function checkLogin() {
   const data = await response.json();
   console.log(data);
   if (data.status === "authorized") {
-    window.location.assign("/homepage");
+    window.location.assign("/login");
   }
 }
 

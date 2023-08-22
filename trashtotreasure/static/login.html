@@ -1,33 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="src/favicon.ico" />
-    <link type="text/css" rel="stylesheet" href="css/default.css" />
-    <script src="js/login.js" defer></script>
-    <title>Discretion</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Trash to Treasure Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./css/login.css" />
+    <script src="./js/login.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
   </head>
-  <body>
-    <header>
-      <h1>Discretion</h1>
-      <em>Not everything needs to be public.</em>
-    </header>
-    <hr />
-    <main>
-      <form id="login-form">
-        <fieldset>
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username" />
-        </fieldset>
-        <fieldset>
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" />
-        </fieldset>
-        <input type="submit" value="Log in" />
-      </form>
-      <p>No account? <a href="/register">Sign up here</a>.</p>
-    </main>
+
+  <body data-new-gr-c-s-check-loaded="14.1120.0" data-gr-ext-installed="">
+    <div class="limiter">
+      <div class="container-login100">
+        <img
+          src="./assets/logo.png"
+          alt="FCC Trash to Treasure logo"
+          class="logo"
+        />
+        <div class="wrap-login100">
+          <form
+            class="login100-form"
+            method="POST"
+            autocomplete="off"
+            id="login-form"
+          >
+            <span class="login100-form-title"> Login </span>
+
+            <div class="wrap-input100">
+              <input
+                class="effect-19 input100"
+                id="username"
+                type="text"
+                placeholder=""
+                autocomplete="off"
+                name="username"
+              />
+              <label for="username">Username</label>
+              <span class="focus-border">
+                <i></i>
+              </span>
+            </div>
+
+            <div class="wrap-input100">
+              <input
+                class="effect-19 input100"
+                id="password"
+                type="password"
+                placeholder=""
+                autocomplete="off"
+                name="password"
+              />
+              <label for="password">Password</label>
+              <span class="focus-border">
+                <i></i>
+              </span>
+            </div>
+
+            <div class="show-pass txt1">
+              <label for="show-pass">Show Password</label>
+              <input type="checkbox" id="show-pass" onclick="showPassword()" /> Show Password
+            </div>
+
+            <div class="container-login100-form-btn m-t-20">
+              <button class="login100-form-btn" type="submit" value="Log in">
+                Log in
+              </button>
+            </div>
+
+            <div class="text-center p-t-25 p-b-5">
+              <span class="txt1"> Don't have an account? </span>
+
+              <a href="./register.html" class="txt2 hov1"> Sign up </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
+
+
