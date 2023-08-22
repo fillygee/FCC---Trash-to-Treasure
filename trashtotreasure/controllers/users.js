@@ -38,7 +38,7 @@ async function register(req, res) {
     data["isAdmin"] = false;
     //console.log(data)
     const result = await User.create(data);
-   console.log('ok')
+   
     return res.status(201).send(result);
   } catch (error) {
     res.status(400).json({ error: error.message });

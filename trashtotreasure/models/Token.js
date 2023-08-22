@@ -18,7 +18,7 @@ class Token {
         );
         
         const newId = response.rows[0].token_id;
-        console.log(response)
+       
         const newToken = await Token.getOneById(newId);
         return newToken;
     }
