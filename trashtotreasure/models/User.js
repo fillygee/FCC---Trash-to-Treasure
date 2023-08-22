@@ -12,7 +12,7 @@ class User {
   };
 
   static getById = async (id) => {
-    return await db.query("SELECT * FROM users WHERE id = $1", [id]);
+    return await db.query("SELECT * FROM users WHERE user_id = $1", [id]);
   };
 
   static async create(data) {
@@ -37,7 +37,7 @@ class User {
   }
 
   static delete = async (id) => {
-    await db.query("DELETE FROM users WHERE id = $1", [id]);
+    await db.query("DELETE FROM users WHERE user_id = $1", [id]);
 
     return await this.getAllUsers();
   };
