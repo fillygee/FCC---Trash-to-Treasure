@@ -1,0 +1,142 @@
+
+
+/* Box Model Hack */
+* {
+    box-sizing: border-box;
+}
+
+/* Clear fix hack */
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clear {
+   clear: both;
+}
+
+/******************************************
+/* BASE STYLES
+/*******************************************/
+html{
+    height: 100%;
+}
+
+
+body {
+    background: linear-gradient(to top right, #ace2ad, #17ada0);  
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+
+.wrap-login100 {
+    width: 500px;
+    background: #F5F5F5;
+    border-radius: 10px;
+    overflow: hidden;
+  
+    box-shadow: 0 3px 20px 0px;
+    padding: 65px 55px 50px;
+  }
+
+  .login100-form {
+    width: 100%;
+  }
+  
+  .login100-form-title {
+    display: block;
+    font-size: 30px;
+    color: #0B847A;
+    line-height: 1.2;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+  
+/******************************************
+/* LAYOUT
+/*******************************************/
+
+nav{
+    background-color: #fcfcfc;
+   
+}
+
+
+.container-login100 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+label {
+    color:  #0B847A;
+}
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+
+
+.navbar-nav > li{
+    padding-left:40px;
+    padding-right:40px;
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+
+a.nav-link {
+    color: #0B847A;
+}
+
+.login100-form-subtitle {
+    display: block;
+    font-size: 20px;
+    color: #0B847A;
+    text-align: center;
+    padding-bottom: 50px;
+  }
+ 
+
+  /* Button start */
+
+  button {
+	outline: none !important;
+	border: none;
+}
+
+
+  .login100-form-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto 0px auto;
+    padding: 16px 32px;
+    border-radius: 6px;
+    /* width: 34%; */
+    /* height: 60px; */
+    background-color: #0B847A;
+    font-size: 14px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    transition: background-color 0.5s;
+
+}
+
+.login100-form-btn:hover {
+  background-color: #0a6b60;
+}
+
+
+  /* Button end */
