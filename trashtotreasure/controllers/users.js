@@ -36,7 +36,7 @@ async function register(req, res) {
     data["password"] = await bcrypt.hash(data["password"], salt);
 
     data["isAdmin"] = false;
-
+    //console.log(data)
     const result = await User.create(data);
 
     return res.status(201).send(result);
@@ -48,7 +48,6 @@ async function register(req, res) {
 async function login(req, res) {
   try {
     const data = req.body;
-
     const user = await User.getOneByUsername(data.username);
 
     const authenticated = await bcrypt.compare(data.password, user["password"]);

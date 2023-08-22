@@ -9,11 +9,11 @@ class Token {
     this.token = token;
   }
 
-  static async create(user_id) {
+  static async create(username) {
     const token = uuidv4();
     const response = await db.query(
-      "INSERT INTO tokens (user_id, token) VALUES ($1, $2) RETURNING token_id;",
-      [user_id, token]
+      "INSERT INTO tokens (username, token) VALUES ($1, $2) RETURNING token_id;",
+      [username, token]
     );
     const newId = response.rows[0].token_id;
     const newToken = await Token.getOneById(newId);
