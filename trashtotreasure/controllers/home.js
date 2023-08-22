@@ -14,7 +14,7 @@ const login = async (req, res) => {
 };
 
 const homepage = async (req, res) => {
-    res.sendFile(path.join(public, "homepage.html"));
+    res.sendFile(path.join(public, "createpost.html"));
 };
 
 module.exports = { register, login, homepage };
