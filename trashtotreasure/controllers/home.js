@@ -9,12 +9,12 @@ const register = async (req, res) => {
     res.sendFile(path.join(public, "register.html"));
 };
 
-const login = async (req, res) => {
-    res.sendFile(path.join(public, "login.html"));
-};
+// const login = async (req, res) => {
+//     res.sendFile(path.join(public, "login.html"));
+// };
 
 const homepage = async (req, res) => {
     res.sendFile(path.join(public, "createpost.html"));
 };
 
-module.exports = { register, login, homepage };
+module.exports = { register, homepage };

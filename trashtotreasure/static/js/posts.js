@@ -30,13 +30,12 @@ document.querySelector("#cats_list").addEventListener("submit", async (e) => {
 });
 
 document.querySelector("#logout").addEventListener("click", async (e) => {
-  e.preventDefault();
-
-  fetch("http://localhost:8080/users/logout", {
-    method: "POST",
+  //e.preventDefault();
+ await fetch("http://localhost:3000/users/logout", {
+    method: "POST", 
   });
-  localStorage.removeItem(`token`)
-  //window.location.assign("/login");
+
+  window.location.assign("/");
 });
 
 // function createPostElement(data) {
