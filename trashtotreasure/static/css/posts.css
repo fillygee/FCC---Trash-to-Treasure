@@ -81,21 +81,20 @@ label {
 }
 
 
-i.pen{
+i.pen,
+i.comment{
   width: 10%;
   color: #3e6b89;
 }
 
-i.pen:hover{
+i.pen:hover,
+i.comment:hover{
   width: 10%;
   color: #3e6b89;
   cursor: pointer;
 }
 
 
-i.comment{
-  color: #3e6b89;
-}
 
 
 

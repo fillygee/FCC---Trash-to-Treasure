@@ -56,6 +56,42 @@
 </div>
 
 
+<div class="modal fade" tabindex="-1" id="comment">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="wrap-login100 contact">
+            <form class="row g-3 login100-form">
+              <span class="login100-form-title"> Comment </span>
+              <div class="col-md-4">
+                <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                  <div class="d-flex flex-start w-100">
+                    <div class="form-outline w-100">
+                      <textarea class="form-control" id="textAreaExample" rows="4"
+                        style="background: #fff;"></textarea>
+                      <label class="form-label" for="textAreaExample">Message</label>
+                    </div>
+                  </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="submit" class="btn btn-outline-success">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
 
   <div class="modal fade" tabindex="-1" id="edit">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -102,7 +138,7 @@
                   <input type="text" class="form-control" id="itemDescription" placeholder="">
                 </div>
                 <div class="col-8">
-                  <label for="inputAddress" class="form-label">Address</label>
+                  <label for="inputAddress" class="form-label">Address</la'bel>
                   <input type="text" class="form-control" id="inputAddress" placeholder="">
                 </div>
                 <div class="col-4">
@@ -119,7 +155,7 @@
       </div>
     </div>
   </div>
-  </div>
+  
 
   
  
@@ -143,72 +179,60 @@
       </div>
     </nav>
   </header>
-  </nav>
-  <section>
-    <div class="container py-5">
-      <div class="row justify-content-center mb-3">
-        <div class="col-md-12 col-xl-10">
-          <div class="card shadow-0 border rounded-3">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                  <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
-                      class="w-100" />
-                    <a href="#!">
-                      <div class="hover-overlay">
-                        <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-6">
-                  <h5>Quant trident shirts</h5>
-                  <div class="d-flex flex-row">
-                    <div class="text-danger mb-1 me-2">
-
+  
+  <section id="posts-section">
+    <template id="post-template">
+      <div id="post-card" class="container py-5">
+        <div class="row justify-content-center mb-3">
+          <div class="col-md-12 col-xl-10">
+            <div class="card shadow-0 border rounded-3">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
+                        class="w-100" />
+                      <a href="#!">
+                        <div class="hover-overlay">
+                          <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                        </div>
+                      </a>
                     </div>
-                    <span>310</span>
                   </div>
-                  <div class="mt-1 mb-0 text-muted small">
-                    <span>100% cotton</span>
-                    <span class="text-success"> • </span>
-                    <span>Light weight</span>
-                    <span class="text-success"> • </span>
-                    <span>Best finish<br /></span>
+                  <div class="col-md-6 col-lg-6 col-xl-6">
+                    <h5 id="title-area"></h5>
+                    <div class="d-flex flex-row">
+                      <div class="text-danger mb-1 me-2">
+  
+                      </div>
+                      <span id="category-area"></span>
+                    </div>
+                    <div class="mt-1 mb-0 text-muted small">
+                      <span id="address-area"></span>
+                      <span id="postcode-area"></span>
+                    </div>
+                    <div class="mb-2 text-muted small">
+                      <span id="timestamp-area"></span>
+                    </div>
+                    <p id="description-area" class="text-truncate mb-4 mb-md-0">
+                    </p>
+                    <i class="fa-regular fa-pen-to-square fa-xl pen" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#edit"></i>
+                    <i class="fa-regular fa-comment  fa-xl comment"  data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#comment"></i>
                   </div>
-                  <div class="mb-2 text-muted small">
-                    <span>Unique design</span>
-                    <span class="text-success"> • </span>
-                    <span>For men</span>
-                    <span class="text-success"> • </span>
-                    <span>Casual<br /></span>
-                  </div>
-                  <p class="text-truncate mb-4 mb-md-0">
-                    There are many variations of passages of Lorem Ipsum available, but the
-                    majority have suffered alteration in some form, by injected humour, or
-                    randomised words which don't look even slightly believable.
-                  </p>
-                  <i class="fa-regular fa-pen-to-square fa-xl pen" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#edit"></i>
-                  <i class="fa-regular fa-comment  fa-xl comment"></i>
-                </div>
-                <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
-                  <div class="d-flex flex-column mt-4">
-                    <button class="btn btn-outline-success btn-sm mt-2" type="button" data-bs-toggle="modal"data-bs-target="#contact">
-                      Contact Owner
-                    </button>
+                  <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                    <div class="d-flex flex-column mt-4">
+                      <button class="btn btn-outline-success btn-sm mt-2" type="button" data-bs-toggle="modal"data-bs-target="#contact">
+                        Contact Owner
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-
+    </template>
   </section>
-  </div>
-  </div>
   <footer class="txt1">
     <img src="./assets/leaf.png" alt="FCC leaf" class="leafimg"> Page 1 2 3 4 <img src="./assets/leaf.png"
       alt="FCC leaf" class="leafimg">
