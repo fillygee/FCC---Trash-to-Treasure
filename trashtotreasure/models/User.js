@@ -2,6 +2,7 @@ const db = require("../db/db");
 
 class User {
   constructor(username, password, isAdmin) {
+    
     this.username = username;
     this.password = password;
     this.isAdmin = isAdmin;
@@ -12,7 +13,7 @@ class User {
   };
 
   static getById = async (id) => {
-    return await db.query("SELECT * FROM users WHERE id = $1", [id]);
+    return await db.query("SELECT * FROM users WHERE user_id = $1", [id]);
   };
 
   static async create(data) {
@@ -21,6 +22,7 @@ class User {
       "INSERT INTO users (username, password, is_admin) VALUES ($1, $2, $3) RETURNING user_id",
       [username, password, isAdmin]
     );
+    console.log(response)
     const newId = response.rows[0].user_id;
     const newUser = await User.getOneById(newId);
     return newUser;
@@ -37,7 +39,7 @@ class User {
   }
 
   static delete = async (id) => {
-    await db.query("DELETE FROM users WHERE id = $1", [id]);
+    await db.query("DELETE FROM users WHERE user_id = $1", [id]);
 
     return await this.getAllUsers();
   };
@@ -49,7 +51,7 @@ class User {
     if (response.rows.length != 1) {
       throw new Error("Unable to locate user.");
     }
-    return new User(response.rows[0].username, response.rows[0].password);
+    return response.rows[0]
   }
 }
 
