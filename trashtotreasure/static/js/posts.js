@@ -29,14 +29,14 @@
 //   }
 // });
 
-document.querySelector("#logout").addEventListener("click", async (e) => {
-  //e.preventDefault();
-  
- await fetch("http://localhost:3000/users/logout", {
-    method: "POST", 
-  });
-  
-  window.location.assign("/");
+document.querySelector('#logout').addEventListener('click', async (e) => {
+    //e.preventDefault();
+
+    await fetch('http://localhost:3000/users/logout', {
+        method: 'POST',
+    });
+
+    window.location.assign('/');
 });
 
 // function createPostElement(data) {
@@ -80,3 +80,32 @@ document.querySelector("#logout").addEventListener("click", async (e) => {
 // }
 
 // loadPosts();
+
+async function loadPosts() {
+    const postsSection = document.getElementById('posts-section');
+    const posts = await fetch('http://localhost:3000/posts')
+        .then((data) => data.json())
+        .catch((error) => console.log(error));
+
+    posts.forEach((post) => {
+        const template = document.getElementById('post-template');
+        const postCard = template.content.cloneNode(true);
+        const titleArea = postCard.querySelector('#title-area');
+        titleArea.textContent = post.item_name;
+        const categoryArea = postCard.querySelector('#category-area');
+        categoryArea.textContent = post.item_category;
+        const addressArea = postCard.querySelector('#address-area');
+        addressArea.textContent = post.address;
+        const postcodeArea = postCard.querySelector('#postcode-area');
+        postcodeArea.textContent = post.postcode;
+        const timestampArea = postCard.querySelector('#timestamp-area');
+        timestampArea.textContent = post.timestamp;
+        const descriptionArea = postCard.querySelector('#description-area');
+        descriptionArea.textContent = post.item_description;
+        postsSection.append(postCard);
+
+        console.log(post);
+    });
+}
+
+loadPosts();
