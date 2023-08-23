@@ -9,6 +9,7 @@ document
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
       },
       body: JSON.stringify({
         item_name: form.get("inputItemName"),
@@ -21,7 +22,7 @@ document
 
     await fetch("http://localhost:3000/posts", options);
 
-    window.location.assign("/");
+    /* window.location.assign("/"); */
 
     /*     if (result.status == 201) {
       const postContainer = document.createElement("div");

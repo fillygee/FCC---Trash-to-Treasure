@@ -46,6 +46,17 @@ class Token {
   static async deleteByToken(token) {
     await db.query("DELETE FROM tokens WHERE token = $1", [token]);
   }
+
+  static async getUserIdByToken(token) {
+    const response = await db.query("SELECT * FROM tokens WHERE token = $1", [
+      token,
+    ]);
+    if (response.rows.length != 1) {
+      throw new Error("Unable to get user_id");
+    }
+    const userId = response.rows[0].user_id;
+    return userId;
+  }
 }
 
 module.exports = Token;

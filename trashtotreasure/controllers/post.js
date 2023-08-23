@@ -22,9 +22,13 @@ const getOne = async (req, res) => {
 const addOne = async (req, res) => {
   try {
     const data = req.body;
+    console.log(data);
+    const token = res.locals.authorization;
+    console.log(token);
+    const userId = await Token.getUserIdByToken(token);
+    console.log(userId);
 
-    const user_id = 1;
-    const result = await Post.create(data, user_id);
+    const result = await Post.create(data, userId);
     console.log(result);
     return res.status(201).send(result);
   } catch (error) {
