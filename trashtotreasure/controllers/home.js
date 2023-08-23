@@ -6,7 +6,7 @@ const public = path.join(__dirname, "../static");
 // };
 
 const register = async (req, res) => {
-    res.sendFile(path.join(public, "register.html"));
+  res.sendFile(path.join(public, "register.html"));
 };
 
 // const login = async (req, res) => {
@@ -14,7 +14,7 @@ const register = async (req, res) => {
 // };
 
 const homepage = async (req, res) => {
-    res.sendFile(path.join(public, "createpost.html"));
+  res.sendFile(path.join(public, "posts.html"));
 };
 
 module.exports = { register, homepage };

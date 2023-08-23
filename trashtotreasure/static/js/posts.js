@@ -1,4 +1,4 @@
-document.querySelector("#cats_list").addEventListener("submit", async (e) => {
+/* document.querySelector("#cats_list").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const form = new FormData(e.target);
@@ -27,12 +27,12 @@ document.querySelector("#cats_list").addEventListener("submit", async (e) => {
     document.querySelector("#cat_age").value = "";
     document.querySelector("#cat_breed").value = "";
   }
-});
+}); */
 
 document.querySelector("#logout").addEventListener("click", async (e) => {
   //e.preventDefault();
- await fetch("http://localhost:3000/users/logout", {
-    method: "POST", 
+  await fetch("http://localhost:3000/users/logout", {
+    method: "POST",
   });
 
   window.location.assign("/");
