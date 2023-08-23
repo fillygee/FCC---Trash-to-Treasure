@@ -21,6 +21,8 @@ document
 
     await fetch("http://localhost:3000/posts", options);
 
+    /* window.location.assign("http://localhost:3000/posts."); */
+
     /*     if (result.status == 201) {
       const postContainer = document.createElement("div");
       postContainer.className = "post-container";
