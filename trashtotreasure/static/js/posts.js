@@ -20,7 +20,7 @@ document.querySelector('.login100-form').addEventListener('submit', async (e) =>
 
     await fetch('http://localhost:3000/posts', options);
 
-    /* window.location.assign("/"); */
+    window.location.assign('./posts.html');
 
     /*     if (result.status == 201) {
       const postContainer = document.createElement("div");
