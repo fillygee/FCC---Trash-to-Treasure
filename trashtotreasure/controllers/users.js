@@ -49,10 +49,8 @@ async function login(req, res) {
   try {
     const data = req.body;
     const user = await User.getOneByUsername(data.username);
-    console.log(data, user);
-
+    console.log(user);
     const authenticated = await bcrypt.compare(data.password, user["password"]);
-    console.log(authenticated);
 
     if (!authenticated) {
       throw new Error("Incorrect credentials.");
@@ -72,7 +70,7 @@ async function logout(req, res) {
   try {
     Token.deleteByToken(res.locals.token);
     res.clearCookie("authorization");
-    res.status(302).redirect("/");
+    res.status(302).redirect("/login");
   } catch (error) {}
 }
 

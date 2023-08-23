@@ -1,25 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="src/favicon.ico" />
-    <script src="js/posts.js" defer></script>
-    <title>Home</title>
+    <link rel="shortcut icon" href="./assets/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="./css/createpost.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <script src="./js/posts.js" defer></script>
+    <title>Trash to Treasure - Create Ad</title>
   </head>
   <body>
-    <nav>
-      <a id="logout" href="login.html">Log out</a>
+    <header>      
+    <nav class="navbar navbar-expand-sm">
+      <div class="container-fluid d-flex justify-content-around">
+        <a class="navbar-brand" href="#">
+          <img src="./assets/navbarlogo.png" alt="FCC logo">
+        </a>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="./posts.html">All Posts</a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link" id="logout" href="./index.html">Log out</a> 
+          </li>
+        </ul>
+      </div>
     </nav>
-    <header>
-      <h1>Discretion</h1>
-      <em>Not everything needs to be public.</em>
     </header>
-    <hr />
-    <main>
-      <div class="container" id="cats"></div>
-      <hr />
+    </nav>
+    <div class="container container-login100">
+    <div class="wrap-login100">
+<!-- put an id for the form -->
+    <form class="row g-3 login100-form"> 
+      <span class="login100-form-title"> Create a post </span>
+      <small class="login100-form-subtitle"> (and turn your trash into treasure!)</small>
+      <div class="col-md-6">
+        <label for="inputItemName4" class="form-label">Item name</label>
+        <input type="text" class="form-control" id="inputItemName">
+      </div>
+      <div class="col-md-6">
+        <label for="inputItemCategory4" class="form-label">Item Category</label>
+        <select id="inputItemCategory4" class="form-select ">
+          <option selected>Select Category</option>
+          <option>Appliances</option>
+          <option>Audio & Stereo</option>
+          <option>Baby & Kids Stuff</option>
+          <option>Cameras, Camcorder</option>
+          <option>Clothes, Footwear & Accessories</option>
+          <option>Computers & Software</option>
+          <option>DIY Tools & Materials</option>
+          <option> Health & Beauty </option>
+          <option>Home & Garden</option>
+          <option> House Clearance</option>
+          <option>Music, Films, Books & Games</option>
+          <option> Musical Instruments & DJ Equipment</option>
+          <option>Office Furniture & Equipment</option>
+          <option>Phones & Mobile Phones</option>
+          <option>Sports, Leisure & Travel</option>
+          <option>TV, DVD, Blu-Ray & Videos</option>
+          <option>Video Games & Consoles</option>
+          <option>Other Goods</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <label for="itemDescription" class="form-label">Item Description</label>
+        <input type="text" class="form-control" id="itemDescription" placeholder="">
+      </div>
+      <div class="col-8">
+        <label for="inputAddress" class="form-label">Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="">
+      </div>
+      <div class="col-4">
+        <label for="inputPostcode" class="form-label">Postcode</label>
+        <input type="text" class="form-control" id="inputPostcode">
+      </div>
+      <div class="col-12">
+        <button type="submit" class="login100-form-btn">Create Post</button>
+      </div>
+    </div>
+    </div>
+    </form>
+<footer>
+  <div class="container-fluid d-flex justify-content-center">
+  <img src="./assets/leaf.png" alt="FCC leaf" class="leafimg"> 
+</div>
+</footer>
+
+      <!-- <div class="container" id="cats">
       <form id="cats_list">
         <fieldset>
           <label for="cat_name">Name:</label>
@@ -36,6 +105,6 @@
         </fieldset>
         <input type="submit" value="Post" />
       </form>
-    </main>
+    </div> -->
   </body>
 </html>
