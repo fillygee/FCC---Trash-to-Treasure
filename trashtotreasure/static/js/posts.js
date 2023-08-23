@@ -1,53 +1,61 @@
-document
-  .querySelector(".login100-form")
-  .addEventListener("submit", async (e) => {
-    e.preventDefault();
 
-    const form = new FormData(e.target);
+
+let selectedID = -1;
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector("#edit-btn").addEventListener("click", async (e) => {
+    e.preventDefault();
+    
+    const name = document.querySelector("#inputItemName4").value
+    const category = document.querySelector("#inputItemCategory4").value
+    const description = document.querySelector("#itemDescription").value
+    const address = document.querySelector("#inputAddress").value
+    const postcode = document.querySelector("#inputPostcode").value
+    
+
     const options = {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        Accept: "application/json",  
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        item_name: form.get("inputItemName"),
-        item_category: form.get("inputItemCategory4"),
-        item_description: form.get("itemDescription"),
-        address: form.get("inputAddress"),
-        postcode: form.get("inputPostcode"),
+        post_id: selectedID,
+        item_name: name,
+        item_category: category,
+        item_description: description,
+        address: address,
+        postcode: postcode
       }),
     };
+    await fetch("http://localhost:3000/posts/update", options)
+    .then((response) => response.json())
+    .then((data) => {
+      // console.log(data);
 
-    await fetch("http://localhost:3000/posts", options);
+      const postsSection = document.getElementById("posts-section");
+      postsSection.textContent = "";
+      /*
+      const editForm = document.getElementById('edit');
+      editForm.classList.remove('show');
+      editForm.style.display = 'none';
+      editForm.ariaHidden = 'true';
+      editForm.removeAttribute('role');
+      editForm.removeAttribute('aria-modal');
 
-    window.location.assign("./posts.html");
 
-    /*     if (result.status == 201) {
-      const postContainer = document.createElement("div");
-      postContainer.className = "post-container";
-
-      const postTitle = document.createElement("h2");
-      postTitle.textContent = form.get("inputItemName");
-
-      const postCategory = document.createElement("p");
-      postCategory.textContent = form.get("inputItemCategory4");
-
-      const postDescription = document.createElement("p");
-      postDescription.textContent = form.get("itemDescription");
-
-      postContainer.appendChild(postTitle);
-      postContainer.appendChild(postCategory);
-      postContainer.appendChild(postDescription);
-
-      const postsContainer = document.getElementById("postsContainer");
-      postsContainer.appendChild(postContainer);
-
-      document.querySelector("#inputItemName").value = "";
-      document.querySelector("#inputItemCategory4").value = "";
-      document.querySelector("#itemDescription").value = "";
-    } */
+      document.querySelector('.modal-backdrop').remove();
+      document.querySelector('body').classList.remove('modal-open');
+      document.querySelector('body').removeAttribute('style');*/
+      loadPosts();
+    })
+    .catch((error) => console.log(error));
+    
   });
+});
+
+
+
 
 document.querySelector("#logout").addEventListener("click", async (e) => {
   e.preventDefault();
@@ -59,47 +67,7 @@ document.querySelector("#logout").addEventListener("click", async (e) => {
   window.location.assign("/");
 });
 
-/* function createPostElement(data) {
-  const name = document.createElement("div");
-  name.addEventListener("click", async (e) => {
-    fetch("/cats/delete/" + data.id);
-    name.remove();
-  });
-  name.className = "cat";
 
-  const header = document.createElement("h2");
-  header.textContent = data["name"];
-  name.appendChild(header);
-
-  const age = document.createElement("p");
-  age.textContent = data["age"];
-  name.appendChild(age);
-
-  const breed = document.createElement("p");
-  breed.textContent = data["breed"];
-  name.appendChild(breed);
-
-  return name;
-} */
-
-// async function loadPosts() {
-//   const response = await fetch("/cats");
-
-//   if (response.status == 200) {
-//     const cats = await response.json();
-
-//     const container = document.getElementById("cats");
-
-//     cats.forEach((p) => {
-//       const elem = createPostElement(p);
-//       container.appendChild(elem);
-//     });
-//   } else {
-//     window.location.assign("/");
-//   }
-// }
-
-// loadPosts();
 async function loadPosts() {
   const postsSection = document.getElementById("posts-section");
   const posts = await fetch("http://localhost:3000/posts")
@@ -108,7 +76,35 @@ async function loadPosts() {
 
   posts.forEach((post) => {
     const template = document.getElementById("post-template");
+
     const postCard = template.content.cloneNode(true);
+    const postId = postCard.querySelector("#post-card")
+    postId.id = post.post_id;
+    postId.classList.add("post-container")
+
+    postCard.querySelector('.post-edit-button').addEventListener('click', (e) => {
+      selectedID = e.target.closest('.post-container').id;
+    });
+
+    postCard.querySelector('.delete').addEventListener('click', async (e) => {
+      selectedID = e.target.closest('.post-container').id;
+      const options = {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",  
+          "Content-Type": "application/json"
+        }
+      };
+      await fetch(`http://localhost:3000/posts/${selectedID}`, options)
+        .then((response) => response.json())
+        .then((data) => {
+          const postsSection = document.getElementById("posts-section");
+          postsSection.textContent = "";
+          loadPosts();
+        })
+        .catch((error) => console.log(error));
+    });
+
     const titleArea = postCard.querySelector("#title-area");
     titleArea.textContent = post.item_name;
     const categoryArea = postCard.querySelector("#category-area");
@@ -123,7 +119,6 @@ async function loadPosts() {
     descriptionArea.textContent = post.item_description;
     postsSection.append(postCard);
 
-    console.log(post);
   });
 }
 

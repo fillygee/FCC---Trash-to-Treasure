@@ -23,9 +23,7 @@ const addOne = async (req, res) => {
   try {
     const data = req.body;
     const userId = 1;
-
     const result = await Post.create(data, userId);
-    console.log(result);
     return res.status(201).send(result);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -54,4 +52,15 @@ const deleteOne = async (req, res) => {
   }
 };
 
-module.exports = { index, getOne, addOne, putOne, deleteOne };
+const update = async (req, res) => {
+ 
+
+    const data = req.body;
+    const post = await Post.getById(data.post_id)
+    const newPost = await post.update(data);
+
+    res.status(201).send(newPost);
+ 
+}
+
+module.exports = { index, getOne, addOne, putOne, deleteOne, update };
