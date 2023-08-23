@@ -7,8 +7,8 @@ router.get("/register", home.register);
 router.get("/login", home.login);
 
 router.get("/homepage", authenticator, home.homepage);
-router.get("*", (req, res) => {
+/* router.get("*", (req, res) => {
   res.redirect("/");
-});
+}); */
 
 module.exports = router;
