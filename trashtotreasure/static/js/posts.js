@@ -130,13 +130,15 @@ async function loadPosts() {
 loadPosts();
 
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   const postCards = document.querySelectorAll("#post-card");
+async function loadPost() {
+  const postCards = document.querySelectorAll("#post-card");
 
-//   postCards.forEach(card => {
-//   card.addEventListener("click", () => {
-//   const postTitle = card.querySelector('h5').innerText;
-//   window.location.href = `individual.html?title=${encodeURIComponent(postTitle)}`;
-//       });
-//   });
-// });
+  postCards.forEach(card => {
+  card.addEventListener("click", () => {
+  const postTitle = card.querySelector('h5').innerText;
+  window.location.href = `individual.html?title=${encodeURIComponent(postTitle)}`;
+      });
+  });
+}
+
+loadPost();
