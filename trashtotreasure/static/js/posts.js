@@ -1,26 +1,24 @@
-document
-  .querySelector(".login100-form")
-  .addEventListener("submit", async (e) => {
+document.querySelector('.login100-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const form = new FormData(e.target);
     const options = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-      body: JSON.stringify({
-        item_name: form.get("inputItemName"),
-        item_category: form.get("inputItemCategory4"),
-        item_description: form.get("itemDescription"),
-        address: form.get("inputAddress"),
-        postcode: form.get("inputPostcode"),
-      }),
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: document.cookie,
+        },
+        body: JSON.stringify({
+            item_name: form.get('inputItemName'),
+            item_category: form.get('inputItemCategory4'),
+            item_description: form.get('itemDescription'),
+            address: form.get('inputAddress'),
+            postcode: form.get('inputPostcode'),
+        }),
     };
 
-    await fetch("http://localhost:3000/posts", options);
+    await fetch('http://localhost:3000/posts', options);
 
     /* window.location.assign("/"); */
 
@@ -48,16 +46,16 @@ document
       document.querySelector("#inputItemCategory4").value = "";
       document.querySelector("#itemDescription").value = "";
     } */
-  });
+});
 
-document.querySelector("#logout").addEventListener("click", async (e) => {
-  e.preventDefault();
+document.querySelector('#logout').addEventListener('click', async (e) => {
+    e.preventDefault();
 
-  await fetch("http://localhost:3000/users/logout", {
-    method: "POST",
-  });
+    await fetch('http://localhost:3000/users/logout', {
+        method: 'POST',
+    });
 
-  window.location.assign("/");
+    window.location.assign('/');
 });
 
 /* function createPostElement(data) {
@@ -102,30 +100,30 @@ document.querySelector("#logout").addEventListener("click", async (e) => {
 
 // loadPosts();
 async function loadPosts() {
-  const postsSection = document.getElementById("posts-section");
-  const posts = await fetch("http://localhost:3000/posts")
-    .then((data) => data.json())
-    .catch((error) => console.log(error));
+    const postsSection = document.getElementById('posts-section');
+    const posts = await fetch('http://localhost:3000/posts')
+        .then((data) => data.json())
+        .catch((error) => console.log(error));
 
-  posts.forEach((post) => {
-    const template = document.getElementById("post-template");
-    const postCard = template.content.cloneNode(true);
-    const titleArea = postCard.querySelector("#title-area");
-    titleArea.textContent = post.item_name;
-    const categoryArea = postCard.querySelector("#category-area");
-    categoryArea.textContent = post.item_category;
-    const addressArea = postCard.querySelector("#address-area");
-    addressArea.textContent = post.address;
-    const postcodeArea = postCard.querySelector("#postcode-area");
-    postcodeArea.textContent = post.postcode;
-    const timestampArea = postCard.querySelector("#timestamp-area");
-    timestampArea.textContent = post.timestamp;
-    const descriptionArea = postCard.querySelector("#description-area");
-    descriptionArea.textContent = post.item_description;
-    postsSection.append(postCard);
+    posts.forEach((post) => {
+        const template = document.getElementById('post-template');
+        const postCard = template.content.cloneNode(true);
+        const titleArea = postCard.querySelector('#title-area');
+        titleArea.textContent = post.item_name;
+        const categoryArea = postCard.querySelector('#category-area');
+        categoryArea.textContent = post.item_category;
+        const addressArea = postCard.querySelector('#address-area');
+        addressArea.textContent = post.address;
+        const postcodeArea = postCard.querySelector('#postcode-area');
+        postcodeArea.textContent = post.postcode;
+        const timestampArea = postCard.querySelector('#timestamp-area');
+        timestampArea.textContent = post.timestamp;
+        const descriptionArea = postCard.querySelector('#description-area');
+        descriptionArea.textContent = post.item_description;
+        postsSection.append(postCard);
 
-    console.log(post);
-  });
+        console.log(post);
+    });
 }
 
 loadPosts();
