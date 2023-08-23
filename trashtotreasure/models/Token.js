@@ -9,13 +9,16 @@ class Token {
         this.token = token;
     }
 
-    static async create(username) {
+    static async create(user_id) {
         const token = uuidv4();
+        console.log(user_id)
         const response = await db.query(
-            'INSERT INTO tokens (username, token) VALUES ($1, $2) RETURNING token_id;',
-            [username, token]
+            'INSERT INTO tokens (user_id, token) VALUES ($1, $2) RETURNING token_id;',
+            [user_id, token]
         );
+        
         const newId = response.rows[0].token_id;
+       
         const newToken = await Token.getOneById(newId);
         return newToken;
     }

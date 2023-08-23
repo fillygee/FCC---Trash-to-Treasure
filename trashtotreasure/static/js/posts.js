@@ -16,7 +16,7 @@ document.querySelector("#cats_list").addEventListener("submit", async (e) => {
     }),
   };
 
-  const result = await fetch("/cats/add", options);
+  //const result = await fetch("/cats/add", options);
 
   if (result.status == 201) {
     document
@@ -30,53 +30,52 @@ document.querySelector("#cats_list").addEventListener("submit", async (e) => {
 });
 
 document.querySelector("#logout").addEventListener("click", async (e) => {
-  e.preventDefault();
-
-  fetch("http://localhost:8080/users/logout", {
-    method: "POST",
+  //e.preventDefault();
+ await fetch("http://localhost:3000/users/logout", {
+    method: "POST", 
   });
 
   window.location.assign("/");
 });
 
-function createPostElement(data) {
-  const name = document.createElement("div");
-  name.addEventListener("click", async (e) => {
-    fetch("/cats/delete/" + data.id);
-    name.remove();
-  });
-  name.className = "cat";
+// function createPostElement(data) {
+//   const name = document.createElement("div");
+//   name.addEventListener("click", async (e) => {
+//     fetch("/cats/delete/" + data.id);
+//     name.remove();
+//   });
+//   name.className = "cat";
 
-  const header = document.createElement("h2");
-  header.textContent = data["name"];
-  name.appendChild(header);
+//   const header = document.createElement("h2");
+//   header.textContent = data["name"];
+//   name.appendChild(header);
 
-  const age = document.createElement("p");
-  age.textContent = data["age"];
-  name.appendChild(age);
+//   const age = document.createElement("p");
+//   age.textContent = data["age"];
+//   name.appendChild(age);
 
-  const breed = document.createElement("p");
-  breed.textContent = data["breed"];
-  name.appendChild(breed);
+//   const breed = document.createElement("p");
+//   breed.textContent = data["breed"];
+//   name.appendChild(breed);
 
-  return name;
-}
+//   return name;
+// }
 
-async function loadPosts() {
-  const response = await fetch("/cats");
+// async function loadPosts() {
+//   const response = await fetch("/cats");
 
-  if (response.status == 200) {
-    const cats = await response.json();
+//   if (response.status == 200) {
+//     const cats = await response.json();
 
-    const container = document.getElementById("cats");
+//     const container = document.getElementById("cats");
 
-    cats.forEach((p) => {
-      const elem = createPostElement(p);
-      container.appendChild(elem);
-    });
-  } else {
-    window.location.assign("/");
-  }
-}
+//     cats.forEach((p) => {
+//       const elem = createPostElement(p);
+//       container.appendChild(elem);
+//     });
+//   } else {
+//     window.location.assign("/");
+//   }
+// }
 
-loadPosts();
+// loadPosts();

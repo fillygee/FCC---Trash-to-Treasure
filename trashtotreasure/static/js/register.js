@@ -21,7 +21,7 @@ document
     //const data = await response.json();
 
     if (response.status == 201) {
-      window.location.assign("/login");
+      window.location.assign("/");
     }
   });
 
