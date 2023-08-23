@@ -22,11 +22,7 @@ const getOne = async (req, res) => {
 const addOne = async (req, res) => {
   try {
     const data = req.body;
-    console.log(data);
-    const token = res.locals.authorization;
-    console.log(token);
-    const userId = await Token.getUserIdByToken(token);
-    console.log(userId);
+    const userId = 1;
 
     const result = await Post.create(data, userId);
     console.log(result);
