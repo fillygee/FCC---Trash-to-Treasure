@@ -18,3 +18,4 @@ const homepage = async (req, res) => {
 };
 
 module.exports = { register, homepage };
+

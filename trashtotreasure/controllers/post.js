@@ -1,4 +1,8 @@
 const Post = require("../models/Post");
+const path = require("path");
+const public = path.join(__dirname, "../static");
+
+
 
 const index = async (req, res) => {
   try {
@@ -14,6 +18,16 @@ const getOne = async (req, res) => {
     const id = req.params.id;
     const result = await Post.getById(id);
     return res.json(result);
+  } catch (error) {
+    return res.status(404).json({ error: error.message });
+  }
+};
+
+const showPost = (req, res) => {
+  try {
+    const postTitle = req.query.item_name;
+    res.render('individual', { postTitle }); 
+  
   } catch (error) {
     return res.status(404).json({ error: error.message });
   }
@@ -54,4 +68,9 @@ const deleteOne = async (req, res) => {
   }
 };
 
-module.exports = { index, getOne, addOne, putOne, deleteOne };
+
+
+
+
+
+module.exports = { index, getOne, addOne, putOne, deleteOne, showPost };

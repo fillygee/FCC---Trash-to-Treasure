@@ -38,6 +38,16 @@ class Post {
     return new Post(response.rows[0]);
   }
 
+  static async getByItemName(item_name) {
+    const response = await db.query("SELECT * FROM posts WHERE item_name = $1", [
+      item_name,
+    ]);
+    if (response.rows.length != 1) {
+      throw new Error("Could not locate post");
+    }
+    return new Post(response.rows[0]);
+  }
+
   static async create(data, user_id) {
     const { item_name, item_category, item_description, address, postcode } =
       data;
