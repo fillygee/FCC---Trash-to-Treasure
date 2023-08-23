@@ -91,7 +91,7 @@ async function logout(req, res) {
   try {
     Token.deleteByToken(res.locals.token);
     res.clearCookie("authorization");
-    res.status(302).redirect("/login");
+    res.status(302).redirect("/");
   } catch (error) {}
 }
 

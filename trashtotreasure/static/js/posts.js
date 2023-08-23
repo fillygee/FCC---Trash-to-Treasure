@@ -1,40 +1,41 @@
-document.querySelector("#cats_list").addEventListener("submit", async (e) => {
-  e.preventDefault();
+// document.querySelector("#cats_list").addEventListener("submit", async (e) => {
+//   e.preventDefault();
 
-  const form = new FormData(e.target);
+//   const form = new FormData(e.target);
 
-  const options = {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: form.get("name"),
-      age: form.get("age"),
-      breed: form.get("breed"),
-    }),
-  };
+//   const options = {
+//     method: "POST",
+//     headers: {
+//       Accept: "application/json",
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       name: form.get("name"),
+//       age: form.get("age"),
+//       breed: form.get("breed"),
+//     }),
+//   };
 
-  //const result = await fetch("/cats/add", options);
+//   //const result = await fetch("/cats/add", options);
 
-  if (result.status == 201) {
-    document
-      .getElementById("cats")
-      .appendChild(createPostElement(JSON.parse(options.body)));
+//   if (result.status == 201) {
+//     document
+//       .getElementById("cats")
+//       .appendChild(createPostElement(JSON.parse(options.body)));
 
-    document.querySelector("#cat_name").value = "";
-    document.querySelector("#cat_age").value = "";
-    document.querySelector("#cat_breed").value = "";
-  }
-});
+//     document.querySelector("#cat_name").value = "";
+//     document.querySelector("#cat_age").value = "";
+//     document.querySelector("#cat_breed").value = "";
+//   }
+// });
 
 document.querySelector("#logout").addEventListener("click", async (e) => {
   //e.preventDefault();
+  
  await fetch("http://localhost:3000/users/logout", {
     method: "POST", 
   });
-
+  
   window.location.assign("/");
 });
 
