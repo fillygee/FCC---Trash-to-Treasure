@@ -1,5 +1,5 @@
 const Post = require("../models/Post");
-
+const Token = require("../models/Token")
 const index = async (req, res) => {
   try {
     const posts = await Post.getAll();
@@ -20,14 +20,15 @@ const getOne = async (req, res) => {
 };
 
 const addOne = async (req, res) => {
-  try {
-    const data = req.body;
-    const userId = 1;
-    const result = await Post.create(data, userId);
-    return res.status(201).send(result);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+    try {
+        const data = req.body;
+        const token = req.headers['authorization'].split('=')[1];
+        const userId = await Token.getUserIdByToken(token);
+        const result = await Post.create(data, userId);
+        return res.status(201).send(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 };
 
 const putOne = async (req, res) => {

@@ -17,6 +17,7 @@ document.querySelector("#logout").addEventListener("click", async (e) => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        Authorization: document.cookie
       },
       body: JSON.stringify({
         item_name: form.get("inputItemName"),
