@@ -32,22 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
     await fetch("http://localhost:3000/posts/update", options)
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data);
 
       const postsSection = document.getElementById("posts-section");
       postsSection.textContent = "";
-      /*
-      const editForm = document.getElementById('edit');
-      editForm.classList.remove('show');
-      editForm.style.display = 'none';
-      editForm.ariaHidden = 'true';
-      editForm.removeAttribute('role');
-      editForm.removeAttribute('aria-modal');
-
-
-      document.querySelector('.modal-backdrop').remove();
-      document.querySelector('body').classList.remove('modal-open');
-      document.querySelector('body').removeAttribute('style');*/
       loadPosts();
     })
     .catch((error) => console.log(error));
