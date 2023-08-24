@@ -7,7 +7,7 @@
     "start": "node index.js",
     "setup_db": "node db/setup-db.js",
     "populate_db": "node db/data/populate_db.js",
-    "psql": "docker exec -it cat_db-instance psql -U kris cat_db",
+    "test": "npx jest tests/layout.spec.js",
     "dev": "nodemon index.js"
   },
   "keywords": [],
