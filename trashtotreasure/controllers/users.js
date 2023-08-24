@@ -13,10 +13,7 @@ const getAll = async (req, res) => {
 
 const getOne = async (req, res) => {
   try {
-    const result = (await User.getById(parseInt(req.params.id))).rows;
-    if (result.length === 0) {
-      throw new Error("User was not found");
-    }
+    const result = await User.getById(parseInt(req.params.id));
     return res.send(result);
   } catch (error) {
     return res
@@ -76,7 +73,9 @@ async function logout(req, res) {
 
 const deleteOne = async (req, res) => {
   try {
-    return res.send((await User.delete(parseInt(req.params.id))).rows);
+    const user = await User.getById(req.params.id);
+    const result = await user.delete();
+    return res.status(204).send(result);
   } catch (error) {
     return res.status(500).send("Could not add delete user with specified id!");
   }

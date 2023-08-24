@@ -1,7 +1,8 @@
 const db = require("../db/db");
 
 class User {
-  constructor(username, password, isAdmin) {
+  constructor({ user_id, username, password, isAdmin }) {
+    this.user_id = user_id;
     this.username = username;
     this.password = password;
     this.isAdmin = isAdmin;
@@ -12,7 +13,10 @@ class User {
   };
 
   static getById = async (id) => {
-    return await db.query("SELECT * FROM users WHERE user_id = $1", [id]);
+    const response = await db.query("SELECT * FROM users WHERE user_id = $1", [
+      id,
+    ]);
+    return new User(response.rows[0]);
   };
 
   static async create(data) {
@@ -36,11 +40,16 @@ class User {
     return new User(response.rows[0]);
   }
 
-  static delete = async (id) => {
-    await db.query("DELETE FROM users WHERE user_id = $1", [id]);
-
-    return await this.getAllUsers();
-  };
+  async delete() {
+    const response = await db.query(
+      "DELETE FROM users WHERE user_id = $1 RETURNING *",
+      [this.user_id]
+    );
+    if (response.rows.length != 1) {
+      throw new Error("Not able to delete user");
+    }
+    return response.rows[0];
+  }
 
   static async getOneByUsername(username) {
     const response = await db.query("SELECT * FROM users WHERE username = $1", [

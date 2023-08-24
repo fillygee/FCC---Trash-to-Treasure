@@ -7,7 +7,7 @@
     "start": "node index.js",
     "setup_db": "node db/setup-db.js",
     "populate_db": "node db/data/populate_db.js",
-    "test": "npx jest tests/layout.spec.js",
+    "test": "npx jest --coverage tests/index.test.js",
     "dev": "nodemon index.js"
   },
   "keywords": [],
