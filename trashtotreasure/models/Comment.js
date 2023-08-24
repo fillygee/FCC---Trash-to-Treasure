@@ -1,11 +1,13 @@
 const db = require('../db/db');
 
 class Comment {
-    constructor({ comment_id, post_id, user_id, content }) {
+    constructor({ comment_id, post_id, user_id, username, content, timestamp }) {
         this.comment_id = comment_id;
         this.post_id = post_id;
         this.user_id = user_id;
+        this.username = username;
         this.content = content;
+        this.timestamp = timestamp;
     }
 
     static async getCommentById(id) {
@@ -17,7 +19,10 @@ class Comment {
     }
 
     static async getAllByPostId(postId) {
-        const response = await db.query('SELECT * FROM comments WHERE post_id = $1', [postId]);
+        const response = await db.query(
+            'SELECT username, content, timestamp FROM comments JOIN users ON comments.user_id = users.user_id WHERE post_id = $1',
+            [postId]
+        );
         return response.rows.map((comment) => new Comment(comment));
     }
 
