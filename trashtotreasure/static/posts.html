@@ -67,20 +67,18 @@
           <div class="wrap-login100 contact">
             <form class="row g-3 login100-form">
               <span class="login100-form-title"> Comment </span>
-              <div class="col-md-4">
                 <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
                   <div class="d-flex flex-start w-100">
                     <div class="form-outline w-100">
-                      <textarea class="form-control" id="textAreaExample" rows="4"
+                      <label class="form-label " for="textAreaExample">Message</label>
+                      <textarea class="form-control  mb-3" id="textAreaExample" rows="4"
                         style="background: #fff;"></textarea>
-                      <label class="form-label" for="textAreaExample">Message</label>
                     </div>
                   </div>
         <div class="modal-footer d-flex justify-content-center">
           <button type="submit" class="btn btn-outline-success">Save changes</button>
         </div>
       </div>
-    </div>
   </div>
 </div>
 </div>
@@ -182,7 +180,7 @@
   
   <section id="posts-section">
     <template id="post-template">
-      <div id="post-card" class="container py-5">
+      <div  class="container py-5 post-card">
         <div class="row justify-content-center mb-3">
           <div class="col-md-12 col-xl-10">
             <div class="card shadow-0 border rounded-3">
@@ -200,21 +198,21 @@
                     </div>
                   </div>
                   <div class="col-md-6 col-lg-6 col-xl-6">
-                    <h5 id="title-area"></h5>
+                    <h5 class="title-area"></h5>
                     <div class="d-flex flex-row">
                       <div class="text-danger mb-1 me-2">
   
                       </div>
-                      <span id="category-area"></span>
+                      <span class="category-area"></span>
                     </div>
                     <div class="mt-1 mb-0 text-muted small">
-                      <span id="address-area"></span>
-                      <span id="postcode-area"></span>
+                      <span class="address-area"></span>
+                      <span class="postcode-area"></span>
                     </div>
                     <div class="mb-2 text-muted small">
-                      <span id="timestamp-area"></span>
+                      <span class="timestamp-area"></span>
                     </div>
-                    <p id="description-area" class="text-truncate mb-4 mb-md-0">
+                    <p class="description-area text-truncate mb-4 mb-md-0">
                     </p>
                     <i class="fa-regular fa-pen-to-square fa-xl pen" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#edit"></i>
                     <i class="fa-regular fa-comment  fa-xl comment"  data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#comment"></i>

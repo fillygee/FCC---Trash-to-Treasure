@@ -109,17 +109,17 @@ async function loadPosts() {
   posts.forEach((post) => {
     const template = document.getElementById("post-template");
     const postCard = template.content.cloneNode(true);
-    const titleArea = postCard.querySelector("#title-area");
+    const titleArea = postCard.querySelector(".title-area");
     titleArea.textContent = post.item_name;
-    const categoryArea = postCard.querySelector("#category-area");
+    const categoryArea = postCard.querySelector(".category-area");
     categoryArea.textContent = post.item_category;
-    const addressArea = postCard.querySelector("#address-area");
+    const addressArea = postCard.querySelector(".address-area");
     addressArea.textContent = post.address;
-    const postcodeArea = postCard.querySelector("#postcode-area");
+    const postcodeArea = postCard.querySelector(".postcode-area");
     postcodeArea.textContent = post.postcode;
-    const timestampArea = postCard.querySelector("#timestamp-area");
+    const timestampArea = postCard.querySelector(".timestamp-area");
     timestampArea.textContent = post.timestamp;
-    const descriptionArea = postCard.querySelector("#description-area");
+    const descriptionArea = postCard.querySelector(".description-area");
     descriptionArea.textContent = post.item_description;
     postsSection.append(postCard);
 
@@ -129,16 +129,19 @@ async function loadPosts() {
 
 loadPosts();
 
-document.addEventListener("DOMContentLoaded", () => {
-  const postCards = document.querySelectorAll("#post-card");
 
-  postCards.forEach(card => {
-  card.addEventListener("click", () => {
+
+
+const postCards = document.querySelectorAll("#post-card");
+
+postCards.forEach(card => {
+card.addEventListener("click", () => {
 
     
-  const postTitle = card.querySelector('h5').innerText;
-  window.location.href = `individual.html?title=${encodeURIComponent(postTitle)}`;
+  const titleArea = card.querySelector('.title-area').textContent;
+  window.location.href = `individual.html?title=${encodeURIComponent(titleArea)}`;
       });
   });
-})
+
+
 

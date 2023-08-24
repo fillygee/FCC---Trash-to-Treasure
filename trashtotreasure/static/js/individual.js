@@ -1,8 +1,17 @@
-const titleArea = document.getElementById('title-area');
-const categoryArea = document.getElementById('category-area');
-const locationArea = document.getElementById('location-area');
-const descriptionArea = document.getElementById('description-area');
-const timestampArea = document.getElementById('timestamp-area');
-const commentsArea = document.getElementById('comments-area');
+// individual.js (individual.html)
+document.addEventListener("DOMContentLoaded", async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const postTitle = urlParams.get("title");
 
-async function loadPost() {}
+    // Fetch the individual post's details using the title
+    const post = await fetch(`http://localhost:3000/posts?title=${encodeURIComponent(postTitle)}`)
+        .then(response => response.json())
+        .catch(error => console.log(error));
+
+    // Display the fetched post details on the page
+    const titleElement = document.getElementById("post-title");
+    titleElement.textContent = post.item_name;
+    const descriptionElement = document.getElementById("post-description");
+    descriptionElement.textContent = post.item_description;
+    // ... Continue updating other elements with post details
+});
