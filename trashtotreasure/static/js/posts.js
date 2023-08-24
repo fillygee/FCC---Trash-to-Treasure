@@ -104,7 +104,7 @@ async function loadPosts() {
         })
         .catch((error) => console.log(error));
     });
-
+    
     const titleArea = postCard.querySelector("#title-area");
     titleArea.textContent = post.item_name;
     const categoryArea = postCard.querySelector("#category-area");
