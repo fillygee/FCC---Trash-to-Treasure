@@ -17,7 +17,7 @@ document
       }),
     };
 
-    const response = await fetch("http://localhost:3000/users/add", options);
+    const response = await fetch("/users/add", options);
     //const data = await response.json();
 
     if (response.status == 201) {
