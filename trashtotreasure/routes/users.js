@@ -6,7 +6,7 @@ const authenticator = require("../middleware/authenticator.js");
 router.get("/", users.getAll);
 router.get("/:id", users.getOne);
 router.post("/add", users.register);
-router.get("/delete/:id", users.deleteOne);
+router.delete("/delete/:id", users.deleteOne);
 
 router.post("/login", users.login);
 router.post("/logout", authenticator, users.logout);

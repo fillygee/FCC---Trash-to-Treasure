@@ -1,130 +1,127 @@
-document
-  .querySelector(".login100-form")
-  .addEventListener("submit", async (e) => {
-    e.preventDefault();
+let selectedID = -1;
 
-    const form = new FormData(e.target);
-    const options = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        item_name: form.get("inputItemName"),
-        item_category: form.get("inputItemCategory4"),
-        item_description: form.get("itemDescription"),
-        address: form.get("inputAddress"),
-        postcode: form.get("inputPostcode"),
-      }),
-    };
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('#edit-btn').addEventListener('click', async (e) => {
+        e.preventDefault();
 
-    await fetch("http://localhost:3000/posts", options);
+        const name = document.querySelector('#inputItemName4').value;
+        const category = document.querySelector('#inputItemCategory4').value;
+        const description = document.querySelector('#itemDescription').value;
+        const address = document.querySelector('#inputAddress').value;
+        const postcode = document.querySelector('#inputPostcode').value;
 
-    window.location.assign("./posts.html");
-
-    /*     if (result.status == 201) {
-      const postContainer = document.createElement("div");
-      postContainer.className = "post-container";
-
-      const postTitle = document.createElement("h2");
-      postTitle.textContent = form.get("inputItemName");
-
-      const postCategory = document.createElement("p");
-      postCategory.textContent = form.get("inputItemCategory4");
-
-      const postDescription = document.createElement("p");
-      postDescription.textContent = form.get("itemDescription");
-
-      postContainer.appendChild(postTitle);
-      postContainer.appendChild(postCategory);
-      postContainer.appendChild(postDescription);
-
-      const postsContainer = document.getElementById("postsContainer");
-      postsContainer.appendChild(postContainer);
-
-      document.querySelector("#inputItemName").value = "";
-      document.querySelector("#inputItemCategory4").value = "";
-      document.querySelector("#itemDescription").value = "";
-    } */
-  });
-
-document.querySelector("#logout").addEventListener("click", async (e) => {
-  e.preventDefault();
-
-  await fetch("http://localhost:3000/users/logout", {
-    method: "POST",
-  });
-
-  window.location.assign("/");
+        const options = {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                post_id: selectedID,
+                item_name: name,
+                item_category: category,
+                item_description: description,
+                address: address,
+                postcode: postcode,
+            }),
+        };
+        await fetch('http://localhost:3000/posts/update', options)
+            .then((response) => response.json())
+            .then((data) => {
+                const postsSection = document.getElementById('posts-section');
+                postsSection.textContent = '';
+                loadPosts();
+            })
+            .catch((error) => console.log(error));
+    });
 });
 
-/* function createPostElement(data) {
-  const name = document.createElement("div");
-  name.addEventListener("click", async (e) => {
-    fetch("/cats/delete/" + data.id);
-    name.remove();
-  });
-  name.className = "cat";
+document.querySelector('#logout').addEventListener('click', async (e) => {
+    e.preventDefault();
 
-  const header = document.createElement("h2");
-  header.textContent = data["name"];
-  name.appendChild(header);
+    await fetch('http://localhost:3000/users/logout', {
+        method: 'POST',
+    });
 
-  const age = document.createElement("p");
-  age.textContent = data["age"];
-  name.appendChild(age);
+    window.location.assign('/');
+});
 
-  const breed = document.createElement("p");
-  breed.textContent = data["breed"];
-  name.appendChild(breed);
-
-  return name;
-} */
-
-// async function loadPosts() {
-//   const response = await fetch("/cats");
-
-//   if (response.status == 200) {
-//     const cats = await response.json();
-
-//     const container = document.getElementById("cats");
-
-//     cats.forEach((p) => {
-//       const elem = createPostElement(p);
-//       container.appendChild(elem);
-//     });
-//   } else {
-//     window.location.assign("/");
-//   }
-// }
-
-// loadPosts();
 async function loadPosts() {
-  const postsSection = document.getElementById("posts-section");
-  const posts = await fetch("http://localhost:3000/posts")
-    .then((data) => data.json())
-    .catch((error) => console.log(error));
+    const postsSection = document.getElementById('posts-section');
+    const posts = await fetch('http://localhost:3000/posts')
+        .then((data) => data.json())
+        .catch((error) => console.log(error));
 
-  posts.forEach((post) => {
-    const template = document.getElementById("post-template");
-    const postCard = template.content.cloneNode(true);
-    const titleArea = postCard.querySelector("#title-area");
-    titleArea.textContent = post.item_name;
-    const categoryArea = postCard.querySelector("#category-area");
-    categoryArea.textContent = post.item_category;
-    const addressArea = postCard.querySelector("#address-area");
-    addressArea.textContent = post.address;
-    const postcodeArea = postCard.querySelector("#postcode-area");
-    postcodeArea.textContent = post.postcode;
-    const timestampArea = postCard.querySelector("#timestamp-area");
-    timestampArea.textContent = post.timestamp;
-    const descriptionArea = postCard.querySelector("#description-area");
-    descriptionArea.textContent = post.item_description;
-    postsSection.append(postCard);
+    posts.forEach((post) => {
+        const template = document.getElementById('post-template');
 
-    console.log(post);
-  });
+        const postCard = template.content.cloneNode(true);
+        const postId = postCard.querySelector('#post-card');
+        postId.id = post.post_id;
+        postId.classList.add('post-container');
+
+        postCard.querySelector('.comment').addEventListener('click', async (e) => {
+            selectedID = e.target.closest('.post-container').id;
+            await loadComments(selectedID);
+        });
+
+        postCard.querySelector('.post-edit-button').addEventListener('click', (e) => {
+            selectedID = e.target.closest('.post-container').id;
+        });
+
+        postCard.querySelector('.delete').addEventListener('click', async (e) => {
+            selectedID = e.target.closest('.post-container').id;
+            const options = {
+                method: 'DELETE',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            };
+            await fetch(`http://localhost:3000/posts/${selectedID}`, options)
+                .then((response) => response.json())
+                .then((data) => {
+                    const postsSection = document.getElementById('posts-section');
+                    postsSection.textContent = '';
+                    loadPosts();
+                })
+                .catch((error) => console.log(error));
+        });
+
+        const titleArea = postCard.querySelector('#title-area');
+        titleArea.textContent = post.item_name;
+        const categoryArea = postCard.querySelector('#category-area');
+        categoryArea.textContent = post.item_category;
+        const addressArea = postCard.querySelector('#address-area');
+        addressArea.textContent = post.address;
+        const postcodeArea = postCard.querySelector('#postcode-area');
+        postcodeArea.textContent = post.postcode;
+        const timestampArea = postCard.querySelector('#timestamp-area');
+        timestampArea.textContent = post.timestamp;
+        const descriptionArea = postCard.querySelector('#description-area');
+        descriptionArea.textContent = post.item_description;
+        postsSection.append(postCard);
+    });
+}
+
+async function loadComments(postId) {
+    const commentSection = document.getElementById('comments-area');
+    const comments = await fetch(`http://localhost:3000/comments/${postId}`)
+        .then((data) => data.json())
+        .catch((error) => console.log(error));
+    const template = document.getElementById('comment-template');
+
+    comments.forEach((comment) => {
+        const commentCard = template.content.cloneNode(true);
+        const userArea = commentCard.getElementById('user-area');
+        userArea.textContent = comment.username;
+        const contentArea = commentCard.getElementById('content-area');
+        contentArea.textContent = comment.content;
+        const timestampArea = commentCard.getElementById('timestamp-area');
+        timestampArea.textContent = comment.timestamp;
+        commentSection.appendChild(commentCard);
+        console.log(comment);
+    });
 }
 
 loadPosts();

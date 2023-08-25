@@ -82,13 +82,15 @@ label {
 
 
 i.pen,
-i.comment{
+i.comment,
+i.delete{
   width: 10%;
   color: #3e6b89;
 }
 
 i.pen:hover,
-i.comment:hover{
+i.comment:hover,
+i.delete:hover{
   width: 10%;
   color: #3e6b89;
   cursor: pointer;
@@ -200,5 +202,3 @@ a.nav-link:hover {
 
 
   /* Button end */
-
-

@@ -6,6 +6,7 @@ const authenticator = require('../middleware/authenticator');
 router.get('/', post.index);
 router.get('/:id', post.getOne);
 router.post('/', post.addOne);
+router.post('/update', post.update)
 router.put('/:id', post.putOne);
 router.delete('/:id', post.deleteOne);
 
