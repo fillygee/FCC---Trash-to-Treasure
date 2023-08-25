@@ -20,7 +20,7 @@ CREATE TABLE posts (
     post_id INT GENERATED ALWAYS AS IDENTITY,
     user_id INT NOT NULL,
     item_name VARCHAR (60) NOT NULL,
-    item_category VARCHAR (30) NOT NULL,
+    item_category VARCHAR (100) NOT NULL,
     item_description VARCHAR (500) NOT NULL,
     address VARCHAR (200) NOT NULL,
     postcode CHAR (12) NOT NULL,
