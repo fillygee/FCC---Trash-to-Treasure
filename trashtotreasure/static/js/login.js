@@ -1,7 +1,5 @@
 
 
-//kristians code here
-
 document.getElementById("login-form").addEventListener("submit", async (e) => {
     e.preventDefault();
   

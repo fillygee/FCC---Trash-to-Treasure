@@ -71,3 +71,6 @@ INSERT INTO comments (post_id, user_id, content) VALUES
     (5, 1, 'The rustic bookshelf is just what I need for my books.'),
     (6, 3, 'Chic coffee table indeed. Would be a great addition to any living room.'),
     (6, 2, 'Is the glass tempered for safety?');
+
+INSERT INTO tokens (user_id, token) VALUES
+    (1, 'test')

@@ -61,7 +61,7 @@ class Post {
         item_description,
         address,
         postcode,
-        this.post_id,
+        this.post_id
       ]
     );
     if (response.rows.length != 1) {
@@ -83,4 +83,5 @@ class Post {
     return deletedPost;
   }
 }
+
 module.exports = Post;
